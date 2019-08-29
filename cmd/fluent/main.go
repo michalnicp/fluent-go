@@ -51,14 +51,13 @@ func main() {
 	for _, file := range flag.Args() {
 		input, err := ioutil.ReadFile(file)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "read %s: %v\n", file, err)
+			fmt.Printf("read %s: %v\n", file, err)
 			code = 1
 		}
 
 		if _, err := syntax.Parse(input); err != nil {
-			fmt.Fprintf(os.Stderr, "parse %s:\n%+v\n", file, err)
+			fmt.Printf("parse %s:\n%+v\n", file, err)
 			code = 1
 		}
 	}
-	os.Exit(code)
 }
