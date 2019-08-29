@@ -26,20 +26,6 @@ func (pe *parseError) Error() string {
 	return fmt.Sprintf("%d:%d: %s", pe.line, pe.col, pe.message)
 }
 
-type multierr []error
-
-func (me multierr) Error() string {
-	messages := make([]string, len(me))
-	for i, err := range me {
-		messages[i] = err.Error()
-	}
-	return strings.Join(messages, "; ")
-}
-
-func (me multierr) AsErrors() []error {
-	return []error(me)
-}
-
 type ParseErrors struct {
 	input  []byte
 	errors []error
